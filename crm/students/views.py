@@ -102,7 +102,7 @@ class StudentListView(View):
 
             students=students.filter(trainer__name=trainer)
             
-        data={'title':'Students','students':students,
+        data={'title':'students','students':students,
               'course_choices': Course.objects.all(),'batch_choices':Batch.objects.all(),
               'trainer_choices': Trainer.objects.all(),'query':query,'course':course}
         
@@ -167,7 +167,7 @@ class AddStudentView(View):
         
         data = {'form':form,'title':'Add Student'}
         
-        return render(request,'Students/add-student.html',context=data)
+        return render(request,'students/add-student.html',context=data)
     
     def post(self,request,*args,**kwargs):
         
@@ -189,7 +189,7 @@ class AddStudentView(View):
 
                 print(password)
 
-                profile = Profile.objects.create_user(username=email,password=password,role='Student')
+                profile = Profile.objects.create_user(username=email,password=password,role='student')
 
                 OTP.objects.creeate(profile=profile)
 
@@ -217,7 +217,7 @@ class AddStudentView(View):
         
         data ={'form':form,'title':'Add Student'}
         
-        return render(request,'Students/add-student.html',context=data)
+        return render(request,'students/add-student.html',context=data)
             
         # post_data = request.POST
         
